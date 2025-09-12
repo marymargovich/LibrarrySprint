@@ -135,7 +135,7 @@ public class LibraryMaps extends AbstractLibrary implements ILibrary, Persistabl
         Collection <List<PickRecord>> res =
                 ((TreeMap<LocalDate, List<PickRecord>>)records).subMap(from, to).values();
         return res.stream()
-                .flatMap(i-> i.stream())
+                .flatMap(Collection::stream)
                 .toList();
     }
 

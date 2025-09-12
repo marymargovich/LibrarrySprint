@@ -12,6 +12,7 @@ public class Book implements Serializable {
     private int amount;
     private int amountInUse;
     private int pickPeriod;
+    private boolean flRemove;
 
     public Book() {
     }
@@ -65,6 +66,14 @@ public class Book implements Serializable {
             this.pickPeriod = pickPeriod;
     }
 
+    public boolean isFlRemove() {
+        return flRemove;
+    }
+
+    public void setFlRemove(boolean flRemove) {
+        this.flRemove = flRemove;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
@@ -89,6 +98,7 @@ public class Book implements Serializable {
                 ", " + BRIGHTGREEN + "amount "      + RESET + getAmount() +
                 ", " + BRIGHTGREEN + "amountInUse " + RESET + getAmountInUse() +
                 ", " + BRIGHTGREEN + "pickPeriod "  + RESET + getPickPeriod() +
+                ", " + BRIGHTGREEN + "flRemove "    + RESET + isFlRemove() +
                 "\n";
     }
 }

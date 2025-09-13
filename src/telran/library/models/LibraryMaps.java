@@ -22,9 +22,9 @@ public class LibraryMaps extends AbstractLibrary implements ILibrary, Persistabl
 
 
     // Sprint2 — новые индексы выдач (private)
-    Map<Integer, List<PickRecord>>  readersRecords; // readerId → выдачи
-    Map<Long, List<PickRecord>>     booksRecords;   // isbn → выдачи
-    Map<LocalDate, List<PickRecord>> records;       // дата выдачи → выдачи
+    Map<Integer, List<PickRecord>>  readersRecords = new HashMap<>(); // readerId → выдачи
+    Map<Long, List<PickRecord>>     booksRecords = new HashMap<>();   // isbn → выдачи
+    Map<LocalDate, List<PickRecord>> records = new TreeMap<>();       // дата выдачи → выдачи
 
 
 
@@ -82,6 +82,8 @@ public class LibraryMaps extends AbstractLibrary implements ILibrary, Persistabl
         if (book.getAmountInUse() >= book.getAmount()) return NO_BOOK_EXEMPLARS;
         if(!readers.containsKey(readerId)) return NO_READER;
 
+        book.setAmountInUse(book.getAmountInUse()+1);
+
         PickRecord record = new PickRecord(pickDate, isbn, readerId);
         addToReadersRecords(record);
         addToBooksRecords(record);
@@ -128,6 +130,7 @@ public class LibraryMaps extends AbstractLibrary implements ILibrary, Persistabl
     public List<Book> getBooksAuthor(String authorName) {
         return books.values().stream()
                 .filter(book -> book.getAuthor().equals(authorName))
+                .filter(book -> book.getAmount() - book.getAmountInUse() > 0)
                 .toList();
     }
 

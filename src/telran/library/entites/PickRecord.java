@@ -1,14 +1,18 @@
 package telran.library.entites;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
-public class PickRecord {
-    long   isbn;
-    int   readerId;
-    LocalDate pickDate;
-    LocalDate returnDate;
-    int  delayDays;
+public class PickRecord implements Serializable {
+    private long   isbn;
+    private int   readerId;
+    private LocalDate pickDate;
+    private LocalDate returnDate;
+    private int  delayDays;
+
+    public PickRecord() {
+    }
 
     public PickRecord(LocalDate pickDate, long isbn, int readerId) {
         this.pickDate = pickDate;

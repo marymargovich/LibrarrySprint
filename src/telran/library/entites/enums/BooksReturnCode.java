@@ -10,6 +10,6 @@ public enum BooksReturnCode {
     PICK_PERIOD_GREATER_MAX,
     BOOK_REMOVED,
     NO_BOOK_EXEMPLARS,
-    NO_READER,
+    NO_READER, READER_READS_IT,
 }
 

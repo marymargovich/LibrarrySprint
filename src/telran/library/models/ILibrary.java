@@ -6,9 +6,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 
-import telran.library.entites.Book;
-import telran.library.entites.PickRecord;
-import telran.library.entites.Reader;
+import telran.library.entites.*;
 import telran.library.entites.enums.BooksReturnCode;
 
 
@@ -28,6 +26,19 @@ public interface ILibrary extends Serializable {
     List<Reader> getReadersPickedBook(long isbn);
     List<Book> getBooksAuthor(String authorName);
     List<PickRecord> getPickedRecordsAtDates(LocalDate from, LocalDate to);
+
+    //Sprint3 (добавилось)
+    RemovedBookData removeBook(long isbn);
+    List<RemovedBookData> removeAuthor(String author);
+    RemovedBookData returnBook(long isbn, int readerId, LocalDate returnDate);
+
+    //Sprint 4 (добавилось)
+    List<ReaderDelay> getReadersDelayingBooks(LocalDate currentDate);
+    List<ReaderDelay> getReadersDelayedBooks();
+    List<Book>        getMostPopularBooks(LocalDate fromDate, LocalDate toDate, int fromAge, int toAge);
+    List<String>      getMostPopularAuthors();
+    List<Reader>      getMostActiveReaders(LocalDate fromDate, LocalDate toDate);
+
 
 }
 
